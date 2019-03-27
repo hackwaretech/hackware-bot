@@ -1,2 +1,2 @@
 # Hackware Strike Force
-Código ainda não documentado
+Código ainda não documentado, extraído originalmente do Gladiator Cheatz
