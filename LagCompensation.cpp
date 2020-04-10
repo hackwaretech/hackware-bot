@@ -3,7 +3,6 @@
 
 LagCompensation::LagCompensation()
 {
-	
 }
 
 void LagCompensation::logEntity(Entity *player)
@@ -94,27 +93,27 @@ void LagCompensation::setEntity(Entity *player, LagRecord record)
 	this->logCurrentEnt(player);
 
 	player->setAbsOriginal(record.m_vAbsOrigin);
-	*(Vector3*)((DWORD)player + offs.vekVel) = record.m_vecVelocity;
-	*(float*)((DWORD)player + offs.simulTime) = record.m_fSimulationTime;
+	*(Vector3 *)((DWORD)player + offs.vekVel) = record.m_vecVelocity;
+	*(float *)((DWORD)player + offs.simulTime) = record.m_fSimulationTime;
 	player->setAbsAechse(record.m_vecAngles);
-	*(float*)((DWORD)player + offs.cycle) = record.m_flCycle;
-	*(int*)((DWORD)player + offs.sequence) = record.m_nSequence;
-	*(int*)((DWORD)player + offs.flags) = record.flags;
-	*(float*)((DWORD)player + offs.lowBodYtarg) = record.m_flLowerBodyYawTarget;
+	*(float *)((DWORD)player + offs.cycle) = record.m_flCycle;
+	*(int *)((DWORD)player + offs.sequence) = record.m_nSequence;
+	*(int *)((DWORD)player + offs.flags) = record.flags;
+	*(float *)((DWORD)player + offs.lowBodYtarg) = record.m_flLowerBodyYawTarget;
 
 	for (int i = 0; i < 24; i++)
-		*(float*)((DWORD)player + offs.poseParams + sizeof(float) * i) = record.m_flPoseParameter[i];
+		*(float *)((DWORD)player + offs.poseParams + sizeof(float) * i) = record.m_flPoseParameter[i];
 
 	record.m_iWantedTick = record.m_fSimulationTime;
 	record.m_bIsFixed = true;
 
 	player->updateClientSideAnimation();
 
-	unsigned long g_iModelBoneCounter = **(unsigned long**)(offs.invalKostCache + 10);
+	unsigned long g_iModelBoneCounter = **(unsigned long **)(offs.invalKostCache + 10);
 
 	//*(int*)((DWORD)player + offs.upisivaKost) = 0;
-	*(unsigned int*)((DWORD)player + 0x2914) = 0xFF7FFFFF; // m_flLastBoneSetupTime = -FLT_MAX;
-	*(unsigned int*)((DWORD)player + 0x2680) = (g_iModelBoneCounter - 1); // m_iMostRecentModelBoneCounter = g_iModelBoneCounter - 1;
+	*(unsigned int *)((DWORD)player + 0x2914) = 0xFF7FFFFF;				   // m_flLastBoneSetupTime = -FLT_MAX;
+	*(unsigned int *)((DWORD)player + 0x2680) = (g_iModelBoneCounter - 1); // m_iMostRecentModelBoneCounter = g_iModelBoneCounter - 1;
 }
 
 void LagCompensation::setCurrentEnt(Entity *player)
@@ -122,29 +121,29 @@ void LagCompensation::setCurrentEnt(Entity *player)
 	int idx = player->getIdx();
 
 	player->setAbsOriginal(m_PrevRecords[idx].m_vAbsOrigin);
-	*(Vector3*)((DWORD)player + offs.vekVel) = m_PrevRecords[idx].m_vecVelocity;
-	*(float*)((DWORD)player + offs.simulTime) = m_PrevRecords[idx].m_fSimulationTime;
+	*(Vector3 *)((DWORD)player + offs.vekVel) = m_PrevRecords[idx].m_vecVelocity;
+	*(float *)((DWORD)player + offs.simulTime) = m_PrevRecords[idx].m_fSimulationTime;
 	player->setAbsAechse(m_PrevRecords[idx].m_vecAngles);
-	*(float*)((DWORD)player + offs.cycle) = m_PrevRecords[idx].m_flCycle;
-	*(int*)((DWORD)player + offs.sequence) = m_PrevRecords[idx].m_nSequence;
-	*(int*)((DWORD)player + offs.flags) = m_PrevRecords[idx].flags;
-	*(float*)((DWORD)player + offs.lowBodYtarg) = m_PrevRecords[idx].m_flLowerBodyYawTarget;
+	*(float *)((DWORD)player + offs.cycle) = m_PrevRecords[idx].m_flCycle;
+	*(int *)((DWORD)player + offs.sequence) = m_PrevRecords[idx].m_nSequence;
+	*(int *)((DWORD)player + offs.flags) = m_PrevRecords[idx].flags;
+	*(float *)((DWORD)player + offs.lowBodYtarg) = m_PrevRecords[idx].m_flLowerBodyYawTarget;
 
 	for (int i = 0; i < 24; i++)
-		*(float*)((DWORD)player + offs.poseParams + sizeof(float) * i) = m_PrevRecords[idx].m_flPoseParameter[i];
+		*(float *)((DWORD)player + offs.poseParams + sizeof(float) * i) = m_PrevRecords[idx].m_flPoseParameter[i];
 
 	m_PrevRecords[idx].m_iWantedTick = m_PrevRecords[idx].m_fSimulationTime;
 
 	player->updateClientSideAnimation();
 
-	unsigned long g_iModelBoneCounter = **(unsigned long**)(offs.invalKostCache + 10);
+	unsigned long g_iModelBoneCounter = **(unsigned long **)(offs.invalKostCache + 10);
 
 	//*(int*)((DWORD)player + offs.upisivaKost) = 0;
-	*(unsigned int*)((DWORD)player + 0x2914) = 0xFF7FFFFF; // m_flLastBoneSetupTime = -FLT_MAX;
-	*(unsigned int*)((DWORD)player + 0x2680) = (g_iModelBoneCounter - 1); // m_iMostRecentModelBoneCounter = g_iModelBoneCounter - 1;
+	*(unsigned int *)((DWORD)player + 0x2914) = 0xFF7FFFFF;				   // m_flLastBoneSetupTime = -FLT_MAX;
+	*(unsigned int *)((DWORD)player + 0x2680) = (g_iModelBoneCounter - 1); // m_iMostRecentModelBoneCounter = g_iModelBoneCounter - 1;
 }
 
-template<class T, class U>
+template <class T, class U>
 T LagCompensation::clamp(T in, U low, U high)
 {
 	if (in <= low)
@@ -198,7 +197,7 @@ int LagCompensation::fakeLagFix(Entity *player, int historyIdx)
 
 	INetChannelInfo *nci = p_Engine->getNetChannelInfo();
 	int predCmdArrivTick = Global::userCMD->tick_count + 1 + TIME_TO_TICKS(nci->GetAvgLatency(FLOW_INCOMING) + nci->GetAvgLatency(FLOW_OUTGOING)); // (c) n0xius @ uc
-	
+
 	int iLerpTicks = TIME_TO_TICKS(lerpTime());
 	int iTargetTickCount = TIME_TO_TICKS(recentLR.m_fSimulationTime) + iLerpTicks;
 
@@ -254,7 +253,7 @@ int LagCompensation::fixTickcount(Entity *player)
 
 	if (recentLR.m_fSimulationTime == 0.0f)
 		return TIME_TO_TICKS(player->getSimulTime() + lerpTime()) + 1;
-	
+
 	int iLerpTicks = TIME_TO_TICKS(lerpTime());
 	int iTargetTickCount = TIME_TO_TICKS(recentLR.m_fSimulationTime) + iLerpTicks;
 
@@ -291,7 +290,7 @@ void LagCompensation::log(ClientFrameStage_en stage)
 		{
 			for (int i = 1; i < p_GlobVars->maxClients; i++)
 			{
-				Entity *player = reinterpret_cast<Entity*>(p_ClientEntList->GetClientEntity(i));
+				Entity *player = reinterpret_cast<Entity *>(p_ClientEntList->GetClientEntity(i));
 
 				if (!player || player == nullptr)
 					continue;

@@ -20,7 +20,6 @@ typedef enum
 class PrimitiImovina
 {
 public:
-
 	char *m_pVarName;
 	Type m_RecvType;
 	int m_Flags;

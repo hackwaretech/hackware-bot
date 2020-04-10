@@ -4,11 +4,9 @@ class AimAssist
 {
 
 public:
-
 	void work(UserCMD *userCMD, char *bSendPacket);
 
 private:
-
 	inline void setTarget(int idx) { iTarget = idx; }
 	inline bool hasTarget() { return iTarget != -1; }
 

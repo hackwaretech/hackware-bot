@@ -5,7 +5,6 @@
 class PrimitiTabella
 {
 public:
-
 	PrimitiImovina *m_pProps;
 	int m_nProps;
 	void *m_pDecoder;

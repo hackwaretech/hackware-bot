@@ -24,7 +24,7 @@ void AimAssist::work(UserCMD *userCMD, char *bSendPacket)
 			getBestTarget();
 			if (hasTarget())
 				targetRegion();
-		}			
+		}
 	}
 	/*if ((!(userCMD->buttons & IN_ATTACK) || !hasTarget()) && mVars.bEnableSkelet)
 		getBestTarget();
@@ -59,7 +59,7 @@ void AimAssist::getBestTarget()
 
 	for (int i = 1; i <= p_GlobVars->maxClients; i++)
 	{
-		Entity *player = reinterpret_cast<Entity*>(p_ClientEntList->GetClientEntity(i));
+		Entity *player = reinterpret_cast<Entity *>(p_ClientEntList->GetClientEntity(i));
 
 		if (!checkTarget(player))
 			continue;
@@ -106,7 +106,7 @@ void AimAssist::getBestTarget()
 
 void AimAssist::targetRegion()
 {
-	Entity *player = reinterpret_cast<Entity*>(p_ClientEntList->GetClientEntity(iTarget));
+	Entity *player = reinterpret_cast<Entity *>(p_ClientEntList->GetClientEntity(iTarget));
 
 	int locPlyrFrdShots = Global::locPlayer->getFiredShots();
 
@@ -133,7 +133,7 @@ void AimAssist::targetRegion()
 
 	Vector3 glava;
 
-	if (locPlyrFrdShots > mVars.afterShots/* || csFuncs->isWeapPistol(Global::locPlayer->getWeaponId()) || Global::locPlayer->getWeaponId() == weapon_ssg08*/)
+	if (locPlyrFrdShots > mVars.afterShots /* || csFuncs->isWeapPistol(Global::locPlayer->getWeaponId()) || Global::locPlayer->getWeaponId() == weapon_ssg08*/)
 		glava = player->getSkeletById(realAimSpot[mVars.afterAim]);
 	else if (locPlyrFrdShots < mVars.afterShots)
 		glava = player->getSkeletById(realAimSpot[mVars.preAim]);
@@ -264,7 +264,7 @@ void AimAssist::trig()
 	Ray_t ray;
 
 	TraceFilterSkipCurrentEntity filter;
-	filter.pSkip = reinterpret_cast<void*>(Global::locPlayer);
+	filter.pSkip = reinterpret_cast<void *>(Global::locPlayer);
 
 	Vector3 viewAechse = userCMD->viewangles;
 
@@ -281,7 +281,7 @@ void AimAssist::trig()
 	rem = neu + forward;
 
 	ray.Init(neu, rem);
-	p_EngineTrace->TraceRay(ray, 0x46004003, (TraceFilter*)&filter, &tr);
+	p_EngineTrace->TraceRay(ray, 0x46004003, (TraceFilter *)&filter, &tr);
 
 	if (!tr.m_pEntityHit)
 		return;
@@ -291,7 +291,7 @@ void AimAssist::trig()
 	if (tr.hitgroup == HITGROUP_HEAD || tr.hitgroup == HITGROUP_CHEST || tr.hitgroup == HITGROUP_STOMACH || (tr.hitgroup == HITGROUP_LEFTARM || tr.hitgroup == HITGROUP_RIGHTARM) || (tr.hitgroup == HITGROUP_LEFTLEG || tr.hitgroup == HITGROUP_RIGHTLEG))
 		dh = true;
 
-	Entity *player = reinterpret_cast<Entity*>(tr.m_pEntityHit);
+	Entity *player = reinterpret_cast<Entity *>(tr.m_pEntityHit);
 	if (player && !player->isStationary() && player->getLeben() > 0 && player->isPlayer())
 	{
 		if (player->getTeam() != Global::locPlayer->getTeam())

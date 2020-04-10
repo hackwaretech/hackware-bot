@@ -9,9 +9,7 @@
 class DVariant
 {
 public:
-
-	union
-	{
+	union {
 		float m_Float;
 		long m_Int;
 		char *m_pString;
@@ -23,40 +21,37 @@ public:
 class PrimitiProxyData
 {
 public:
-
 	const PrimitiImovina *m_pRecvProp;
 	DVariant m_Value;
 	int m_iElement;
 	int m_ObjectID;
 };
 
-typedef void(*PrimitiVarProxyFn)(const PrimitiProxyData *pData, void *pStruct, void *pOut);
+typedef void (*PrimitiVarProxyFn)(const PrimitiProxyData *pData, void *pStruct, void *pOut);
 
 namespace NetMngr
 {
-	class Mngr
-	{
-	public:
+class Mngr
+{
+public:
+	~Mngr() { this->tabelle.clear(); }
 
-		~Mngr() { this->tabelle.clear(); }
+	void init();
+	int getOffs(const char *tabellaIme, const char *imovIme);
+	bool hookProp(const char *tabellaIme, const char *imovIme, PrimitiVarProxyFn func);
+	bool hookProp(const char *tabellaIme, const char *imovIme, PrimitiVarProxyFn func, PrimitiVarProxyFn &orig);
+	void dump();
 
-		void init();
-		int getOffs(const char *tabellaIme, const char *imovIme);
-		bool hookProp(const char *tabellaIme, const char *imovIme, PrimitiVarProxyFn func);
-		bool hookProp(const char *tabellaIme, const char *imovIme, PrimitiVarProxyFn func, PrimitiVarProxyFn &orig);
-		void dump();
+private:
+	std::unordered_map<std::string, PrimitiTabella *> tabelle;
 
-	private:
-
-		std::unordered_map<std::string, PrimitiTabella*> tabelle;
-
-		int getImov(const char *tabellaIme, const char *imovIme, PrimitiImovina **imov = 0);
-		int getImov(PrimitiTabella *primitiTabella, const char *imovIme, PrimitiImovina **imov = 0);
-		PrimitiTabella *getTabella(const char *tabellaIme);
-		void dumpTabella(PrimitiTabella *tabella, std::string tabs);
-		std::string type2str(Type t);
-	};
-}
+	int getImov(const char *tabellaIme, const char *imovIme, PrimitiImovina **imov = 0);
+	int getImov(PrimitiTabella *primitiTabella, const char *imovIme, PrimitiImovina **imov = 0);
+	PrimitiTabella *getTabella(const char *tabellaIme);
+	void dumpTabella(PrimitiTabella *tabella, std::string tabs);
+	std::string type2str(Type t);
+};
+} // namespace NetMngr
 
 extern NetMngr::Mngr *netMngr;
 

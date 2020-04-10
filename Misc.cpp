@@ -25,8 +25,10 @@ void Misc::bhop(UserCMD *userCMD)
 			if (mVars.bEnableAS)
 			{
 				bool backwards = false;
-				if (userCMD->mousedx < 0) userCMD->sidemove = backwards ? 650.f : -650.f;
-				if (userCMD->mousedx > 0) userCMD->sidemove = backwards ? -650.f : 650.f;
+				if (userCMD->mousedx < 0)
+					userCMD->sidemove = backwards ? 650.f : -650.f;
+				if (userCMD->mousedx > 0)
+					userCMD->sidemove = backwards ? -650.f : 650.f;
 			}
 		}
 	}
@@ -34,7 +36,7 @@ void Misc::bhop(UserCMD *userCMD)
 
 void Misc::revealRanks()
 {
-	static float fArr[3] = { 0.f, 0.f, 0.f };
+	static float fArr[3] = {0.f, 0.f, 0.f};
 
 	RevealRanks = (RevealRanksFn)(offs.revealAllRank);
 	RevealRanks(fArr);
@@ -103,7 +105,7 @@ void Misc::nameChanger()
 	if (promene >= 5)
 	{
 		std::string name = "\n";
-		char chars[3] = { '\n', '\0', '\t' };
+		char chars[3] = {'\n', '\0', '\t'};
 
 		for (int i = 0; i < 127; i++)
 			name += chars[rand() % 2];
@@ -121,7 +123,7 @@ void Misc::nameChanger()
 void Misc::changeName(const char *name)
 {
 	ConVar *cv = p_Console->FindVar("name");
-	*(int*)((DWORD)&cv->fnChangeCallback + 0xC) = 0;
+	*(int *)((DWORD)&cv->fnChangeCallback + 0xC) = 0;
 	cv->SetValue(name);
 }
 

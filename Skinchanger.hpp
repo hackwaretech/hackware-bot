@@ -52,7 +52,7 @@ struct Skin
 		this->model = model;
 	}
 
-	Skin() { };
+	Skin(){};
 };
 
 extern std::unordered_map<int, Skin> skins;
@@ -60,12 +60,10 @@ extern std::unordered_map<int, Skin> skins;
 class Skinchanger
 {
 public:
-
 	void change(ClientFrameStage_en stage);
 	void fireEventOnClientSide(GameEvent *gEvent);
 
 private:
-
 	const char *getModelByItemDI(int idx);
 	const char *knifeToString(int idx);
 };

@@ -68,12 +68,10 @@ struct LagRecord
 class LagCompensation
 {
 public:
-
 	LagRecord m_LagRecord[64][11] = {};
 	LagRecord m_PrevRecords[64] = {};
 
 public:
-
 	LagCompensation();
 
 	void logEntity(Entity *player);
@@ -88,8 +86,7 @@ public:
 	bool lbyShallUpdate(Entity *player);
 
 private:
-
-	template<class T, class U>
+	template <class T, class U>
 	T clamp(T in, U low, U high);
 	float lerpTime();
 };

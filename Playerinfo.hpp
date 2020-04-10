@@ -1,12 +1,12 @@
 #pragma once
 
-
 typedef struct s_playerinfo
 {
 	int64_t __pad0;
 	union {
 		int64_t xuid;
-		struct {
+		struct
+		{
 			int xuidlow;
 			int xuidhigh;
 		};

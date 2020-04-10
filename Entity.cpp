@@ -3,7 +3,7 @@
 
 int Entity::getTeam()
 {
-	return *(int*)((DWORD)this + offs.entTeam);
+	return *(int *)((DWORD)this + offs.entTeam);
 }
 
 bool Entity::isPlayer()
@@ -12,7 +12,7 @@ bool Entity::isPlayer()
 
 	for (int i = 0; i < 64; i++)
 	{
-		ent = reinterpret_cast<Entity*>(csFuncs->getEntityById(i));
+		ent = reinterpret_cast<Entity *>(csFuncs->getEntityById(i));
 
 		if (ent == this)
 			return true;
@@ -22,62 +22,62 @@ bool Entity::isPlayer()
 
 DWORD Entity::getGlowIndex()
 {
-	return *(DWORD*)((DWORD)this + offs.entGlowIndex);
+	return *(DWORD *)((DWORD)this + offs.entGlowIndex);
 }
 
 bool Entity::isStationary()
 {
-	return *(bool*)((DWORD)this + offs.stationary);
+	return *(bool *)((DWORD)this + offs.stationary);
 }
 
 bool Entity::isImmune()
 {
-	return *(bool*)((DWORD)this + offs.immun);
+	return *(bool *)((DWORD)this + offs.immun);
 }
 
 bool Entity::getLifeState()
 {
-	return *(bool*)((DWORD)this + offs.lifeSt);
+	return *(bool *)((DWORD)this + offs.lifeSt);
 }
 
 int &Entity::getFlags()
 {
-	return *(int*)((DWORD)this + offs.flags);
+	return *(int *)((DWORD)this + offs.flags);
 }
 
 int Entity::getMoveTip()
 {
-	return *(int*)((DWORD)this + 0x258);
+	return *(int *)((DWORD)this + 0x258);
 }
 
 int Entity::getFiredShots()
 {
-	return *(int*)((DWORD)this + offs.metakFired);
+	return *(int *)((DWORD)this + offs.metakFired);
 }
 
 int Entity::getTickBase()
 {
-	return *(int*)((DWORD)this + offs.tickBase);
+	return *(int *)((DWORD)this + offs.tickBase);
 }
 
 int Entity::getArmVal()
 {
-	return *(int*)((DWORD)this + offs.armVal);
+	return *(int *)((DWORD)this + offs.armVal);
 }
 
 bool Entity::getHelm()
 {
-	return *(bool*)((DWORD)this + offs.hHelm);
+	return *(bool *)((DWORD)this + offs.hHelm);
 }
 
 bool Entity::getHeavArm()
 {
-	return *(bool*)((DWORD)this + offs.hHeavArmor);
+	return *(bool *)((DWORD)this + offs.hHeavArmor);
 }
 
 Vector3 Entity::getVel()
 {
-	return *(Vector3*)((DWORD)this + offs.vekVel);
+	return *(Vector3 *)((DWORD)this + offs.vekVel);
 }
 
 Vector3 Entity::predict(Vector3 v0)
@@ -87,49 +87,49 @@ Vector3 Entity::predict(Vector3 v0)
 
 Vector3 Entity::getVektPunch()
 {
-	return *(Vector3*)((DWORD)this + offs.aimPunch);
+	return *(Vector3 *)((DWORD)this + offs.aimPunch);
 }
 
 Vector3 Entity::getVecAechse()
 {
-	return *(Vector3*)((DWORD)this + offs.vecAechse);
+	return *(Vector3 *)((DWORD)this + offs.vecAechse);
 }
 
 Vector3 Entity::getViewOriginal()
 {
-	return *(Vector3*)((DWORD)this + offs.viewOriginal);
+	return *(Vector3 *)((DWORD)this + offs.viewOriginal);
 }
 
 int Entity::getCompRank(int idx)
 {
-	DWORD tmp = *(DWORD*)(csFuncs->dClientDll + offs.gameRes);
-	return *(int*)((DWORD)tmp + offs.compRank + (int)idx * 4);
+	DWORD tmp = *(DWORD *)(csFuncs->dClientDll + offs.gameRes);
+	return *(int *)((DWORD)tmp + offs.compRank + (int)idx * 4);
 }
 
 int Entity::getCompWins(int idx)
 {
-	DWORD tmp = *(DWORD*)(csFuncs->dClientDll + offs.gameRes);
-	return *(int*)((DWORD)tmp + offs.compWins + (int)idx * 4);
+	DWORD tmp = *(DWORD *)(csFuncs->dClientDll + offs.gameRes);
+	return *(int *)((DWORD)tmp + offs.compWins + (int)idx * 4);
 }
 
 bool Entity::getGameResConnected(int idx)
 {
-	DWORD tmp = *(DWORD*)(csFuncs->dClientDll + offs.gameRes);
-	return *(bool*)((DWORD)tmp + offs.resConnected + idx);
+	DWORD tmp = *(DWORD *)(csFuncs->dClientDll + offs.gameRes);
+	return *(bool *)((DWORD)tmp + offs.resConnected + idx);
 }
 
 int Entity::getGameResTeam(int idx)
 {
-	DWORD tmp = *(DWORD*)(csFuncs->dClientDll + offs.gameRes);
-	return *(int*)((DWORD)tmp + offs.resTeam + (int)idx * 4);
+	DWORD tmp = *(DWORD *)(csFuncs->dClientDll + offs.gameRes);
+	return *(int *)((DWORD)tmp + offs.resTeam + (int)idx * 4);
 }
 
 std::wstring Entity::getName(int idx)
 {
-	DWORD tmpBase = *(DWORD*)(csFuncs->dClientDll + offs.radar);
-	DWORD tmp = *(DWORD*)(tmpBase + 0x54);
+	DWORD tmpBase = *(DWORD *)(csFuncs->dClientDll + offs.radar);
+	DWORD tmp = *(DWORD *)(tmpBase + 0x54);
 
-	wchar_t *wcName = (wchar_t*)(tmp + 0x1E0 * idx + 0x24);
+	wchar_t *wcName = (wchar_t *)(tmp + 0x1E0 * idx + 0x24);
 	std::wstring name(wcName);
 
 	return name;
@@ -137,7 +137,7 @@ std::wstring Entity::getName(int idx)
 
 int Entity::getLeben()
 {
-	return *(int*)((DWORD)this + offs.leben);
+	return *(int *)((DWORD)this + offs.leben);
 }
 
 Vector3 Entity::getSkeletById(int idx)
@@ -177,58 +177,58 @@ int Entity::getSkeletByName(const char *imeKost)
 
 EntityWeapon *Entity::getWeapon()
 {
-	DWORD weap = *(DWORD*)((DWORD)this + offs.activWeap);
+	DWORD weap = *(DWORD *)((DWORD)this + offs.activWeap);
 	auto plyrWeap = p_ClientEntList->GetClientEntityFromHandle(weap);
 
 	if (plyrWeap)
-		return reinterpret_cast<EntityWeapon*>(plyrWeap);
+		return reinterpret_cast<EntityWeapon *>(plyrWeap);
 	else
 		return NULL;
 }
 
 UINT *Entity::getWeapons()
 {
-	return (UINT*)((DWORD)this + 0x2DE8);
+	return (UINT *)((DWORD)this + 0x2DE8);
 }
 
 int Entity::getWeaponId()
 {
-	DWORD weap = *(DWORD*)((DWORD)this + offs.activWeap);
+	DWORD weap = *(DWORD *)((DWORD)this + offs.activWeap);
 	auto plyrWeap = p_ClientEntList->GetClientEntityFromHandle(weap);
 
 	if (plyrWeap)
-		return *(int*)(reinterpret_cast<EntityWeapon*>(plyrWeap) + offs.itmDI);
+		return *(int *)(reinterpret_cast<EntityWeapon *>(plyrWeap) + offs.itmDI);
 	else
 		return 0;
 }
 
 int *Entity::getModelIdx()
 {
-	return (int*)((DWORD)this + offs.modIdx);
+	return (int *)((DWORD)this + offs.modIdx);
 }
 
 DWORD Entity::getViewModel()
 {
-	return *(DWORD*)((DWORD)this + offs.viewModel);
+	return *(DWORD *)((DWORD)this + offs.viewModel);
 }
 
 Client *Entity::getClientCls()
 {
-	void *netwable = (void*)((DWORD)(this) + 0x8);
-	typedef Client*(__thiscall *o_GetClientCls)(void*);
+	void *netwable = (void *)((DWORD)(this) + 0x8);
+	typedef Client *(__thiscall * o_GetClientCls)(void *);
 	return VT::vfunc<o_GetClientCls>(netwable, 2)(netwable);
 }
 
 int Entity::getIdx()
 {
-	void *netwable = (void*)((DWORD)(this) + 0x8);
-	typedef int(__thiscall *o_GetIdx)(void*);
+	void *netwable = (void *)((DWORD)(this) + 0x8);
+	typedef int(__thiscall * o_GetIdx)(void *);
 	return VT::vfunc<o_GetIdx>(netwable, 10)(netwable);
 }
 
 model_t *Entity::getModel()
 {
-	return *(model_t**)((DWORD)this + 0x6C);
+	return *(model_t **)((DWORD)this + 0x6C);
 }
 
 bool Entity::setupBones(matrix3x4_t *kostToWorldOut, int maxKosti, int kostMaska, float curtime)
@@ -240,30 +240,30 @@ bool Entity::setupBones(matrix3x4_t *kostToWorldOut, int maxKosti, int kostMaska
 	//*(int*)((DWORD)(this) + offs.iCheckForOccl) = p_GlobVars->framecount;
 	//reinterpret_cast<void(__fastcall*)(void*)>(offs.invalKostCache)(this);
 
-	void *rendable = (void*)((DWORD)(this) + 0x4);
-	typedef bool(__thiscall *o_setupBones)(void*, matrix3x4_t*, int, int, float);
+	void *rendable = (void *)((DWORD)(this) + 0x4);
+	typedef bool(__thiscall * o_setupBones)(void *, matrix3x4_t *, int, int, float);
 	return VT::vfunc<o_setupBones>(rendable, 13)(rendable, kostToWorldOut, maxKosti, kostMaska, curtime);
 }
 
-void AngleIMatrix(const QAngle& angles, matrix3x4_t& matrix)
+void AngleIMatrix(const QAngle &angles, matrix3x4_t &matrix)
 {
 	Assert(s_bMathlibInitialized);
-	float		sr, sp, sy, cr, cp, cy;
+	float sr, sp, sy, cr, cp, cy;
 
 	SinCos(DEG2RAD(angles[1]), &sy, &cy);
 	SinCos(DEG2RAD(angles[0]), &sp, &cp);
 	SinCos(DEG2RAD(angles[2]), &sr, &cr);
 
 	// matrix = (YAW * PITCH) * ROLL
-	matrix[0][0] = cp*cy;
-	matrix[0][1] = cp*sy;
+	matrix[0][0] = cp * cy;
+	matrix[0][1] = cp * sy;
 	matrix[0][2] = -sp;
-	matrix[1][0] = sr*sp*cy + cr*-sy;
-	matrix[1][1] = sr*sp*sy + cr*cy;
-	matrix[1][2] = sr*cp;
-	matrix[2][0] = (cr*sp*cy + -sr*-sy);
-	matrix[2][1] = (cr*sp*sy + -sr*cy);
-	matrix[2][2] = cr*cp;
+	matrix[1][0] = sr * sp * cy + cr * -sy;
+	matrix[1][1] = sr * sp * sy + cr * cy;
+	matrix[1][2] = sr * cp;
+	matrix[2][0] = (cr * sp * cy + -sr * -sy);
+	matrix[2][1] = (cr * sp * sy + -sr * cy);
+	matrix[2][2] = cr * cp;
 	matrix[0][3] = 0.f;
 	matrix[1][3] = 0.f;
 	matrix[2][3] = 0.f;
@@ -271,7 +271,7 @@ void AngleIMatrix(const QAngle& angles, matrix3x4_t& matrix)
 
 bool Entity::setupBonesEx(Entity *player, int kostMaska, matrix3x4_t *kostToWorldOut)
 {
-	void *rendable = (void*)((DWORD)player + 0x4);
+	void *rendable = (void *)((DWORD)player + 0x4);
 
 	if (!rendable)
 		return false;
@@ -281,14 +281,14 @@ bool Entity::setupBonesEx(Entity *player, int kostMaska, matrix3x4_t *kostToWorl
 		return false;
 
 	// 9876 boneaccessor
-	// 9884 oldWritableBones m_WritableBones 
-	// 9880 oldReadableBones m_ReadableBones 
+	// 9884 oldWritableBones m_WritableBones
+	// 9880 oldReadableBones m_ReadableBones
 
-	matrix3x4_t *backup_matrix = *(matrix3x4_t**)((DWORD)rendable + 0x2694);
+	matrix3x4_t *backup_matrix = *(matrix3x4_t **)((DWORD)rendable + 0x2694);
 	if (!backup_matrix)
 		return false;
 
-	int oldReadableBones = *(int*)((DWORD)rendable + 9880);
+	int oldReadableBones = *(int *)((DWORD)rendable + 9880);
 
 	int bonesMaskNeedRecalc = kostMaska | oldReadableBones;
 
@@ -313,9 +313,9 @@ bool Entity::setupBonesEx(Entity *player, int kostMaska, matrix3x4_t *kostToWorl
 	player->setAbsOriginal(origin);
 	player->setAbsAechse(angles);
 	for (int i = 0; i < 24; i++)
-		*(float*)((DWORD)player + offs.poseParams + sizeof(float) * i) = lagComp->m_LagRecord[player->getIdx()][mVars.historyIdx].m_flPoseParameter[i];
+		*(float *)((DWORD)player + offs.poseParams + sizeof(float) * i) = lagComp->m_LagRecord[player->getIdx()][mVars.historyIdx].m_flPoseParameter[i];
 
-	*(int*)((DWORD)rendable + 224) |= 8;//AddFlag( EFL_SETTING_UP_BONES ); (1 << 3));
+	*(int *)((DWORD)rendable + 224) |= 8; //AddFlag( EFL_SETTING_UP_BONES ); (1 << 3));
 
 	Vector3 pos[128];
 	Quaternion q[128];
@@ -325,26 +325,26 @@ bool Entity::setupBonesEx(Entity *player, int kostMaska, matrix3x4_t *kostToWorl
 
 	player->standardBlendingRules(studiohdr, pos, q, p_GlobVars->curtime, bonesMaskNeedRecalc);
 
-	*(matrix3x4_t**)((DWORD)rendable + 0x2694) = kostToWorldOut;
+	*(matrix3x4_t **)((DWORD)rendable + 0x2694) = kostToWorldOut;
 
-	byte computed[0x100] = { 0 };
+	byte computed[0x100] = {0};
 	player->buildTransformations(studiohdr, pos, q, parentTransform, bonesMaskNeedRecalc, computed);
 
-	*(int*)((DWORD)rendable + 224) &= ~(8);//AddFlag( EFL_SETTING_UP_BONES ); (1 << 3));
+	*(int *)((DWORD)rendable + 224) &= ~(8); //AddFlag( EFL_SETTING_UP_BONES ); (1 << 3));
 
-	*(matrix3x4_t**)((DWORD)rendable + 0x2694) = backup_matrix;
+	*(matrix3x4_t **)((DWORD)rendable + 0x2694) = backup_matrix;
 
 	player->setAbsOriginal(backup_absorigin);
 	player->setAbsAechse(backup_absangles);
 	for (int i = 0; i < 24; i++)
-		*(float*)((DWORD)player + offs.poseParams + sizeof(float) * i) = backup_poses[i];
+		*(float *)((DWORD)player + offs.poseParams + sizeof(float) * i) = backup_poses[i];
 
 	return true;
 }
 
 Collideable *Entity::getCollideable()
 {
-	return (Collideable*)((DWORD)this + offs.coll);
+	return (Collideable *)((DWORD)this + offs.coll);
 }
 
 DWORD Entity::getRgflCoordinateFrame()
@@ -354,76 +354,76 @@ DWORD Entity::getRgflCoordinateFrame()
 
 Vector3 *Entity::getHeadRot()
 {
-	return (Vector3*)((DWORD)this + offs.angRot);
+	return (Vector3 *)((DWORD)this + offs.angRot);
 }
 
 float Entity::getLowBodYtarg()
 {
-	return *(float*)((DWORD)this + offs.lowBodYtarg);
+	return *(float *)((DWORD)this + offs.lowBodYtarg);
 }
 
 int Entity::getHitboxSet()
 {
-	return *(int*)((DWORD)this + offs.hitboxSet);
+	return *(int *)((DWORD)this + offs.hitboxSet);
 }
 
 Vector3 &Entity::getEyeAechse()
 {
-	return *(Vector3*)((DWORD)this + offs.angEyeAechse);
+	return *(Vector3 *)((DWORD)this + offs.angEyeAechse);
 }
 
 bool Entity::isAlive()
 {
-	return (bool)(*(int*)((DWORD)this + offs.lifeSt) == 0);
+	return (bool)(*(int *)((DWORD)this + offs.lifeSt) == 0);
 }
 
 bool Entity::isZum()
 {
-	return *(bool*)((DWORD)this + offs.uZum);
+	return *(bool *)((DWORD)this + offs.uZum);
 }
 
 int Entity::getOwner()
 {
-	return *(int*)((DWORD)this + offs.owner);
+	return *(int *)((DWORD)this + offs.owner);
 }
 
 float &Entity::getSimulTime()
 {
-	return *(float*)((DWORD)this + offs.simulTime);
+	return *(float *)((DWORD)this + offs.simulTime);
 }
 
 float &Entity::getCycle()
 {
-	return *(float*)((DWORD)this + offs.cycle);
+	return *(float *)((DWORD)this + offs.cycle);
 }
 int &Entity::getSequence()
 {
-	return *(int*)((DWORD)this + offs.sequence);
+	return *(int *)((DWORD)this + offs.sequence);
 }
 
 Vector3 &Entity::getAbsOriginal()
 {
-	typedef Vector3&(__thiscall *o_getAbsOriginal)(void*);
+	typedef Vector3 &(__thiscall * o_getAbsOriginal)(void *);
 	return VT::vfunc<o_getAbsOriginal>(this, 10)(this);
 }
 
 Vector3 &Entity::getNetOriginal()
 {
 	static int offset = netMngr->getOffs(XorStr("CCSPlayer"), XorStr("m_flFriction")) - sizeof(Vector3);
-	return *(Vector3*)((DWORD)this + offset);
+	return *(Vector3 *)((DWORD)this + offset);
 }
 
 Vector3 &Entity::getAbsAechse()
 {
-	typedef Vector3&(__thiscall *o_getAbsAechse)(void*);
+	typedef Vector3 &(__thiscall * o_getAbsAechse)(void *);
 	return VT::vfunc<o_getAbsAechse>(this, 11)(this);
 }
 
 void Entity::setAbsOriginal(Vector3 origin)
 {
-	using SetAbsOriginFn = void(__thiscall*)(void*, const Vector3 &origin);
+	using SetAbsOriginFn = void(__thiscall *)(void *, const Vector3 &origin);
 	static SetAbsOriginFn SetAbsOrigin;
-	
+
 	if (!SetAbsOrigin)
 		SetAbsOrigin = (SetAbsOriginFn)(csFuncs->findPattern(XorStr("\x55\x8B\xEC\x83\xE4\xF8\x51\x53\x56\x57\x8B\xF1\xE8\x00\x00"), XorStr("xxxxxxxxxxxxx??"), csFuncs->dClientDll, csFuncs->dClientDll + csFuncs->dClientDllSize, 0));
 
@@ -432,7 +432,7 @@ void Entity::setAbsOriginal(Vector3 origin)
 
 void Entity::setAbsAechse(Vector3 aechse)
 {
-	using SetAbsAechseFn = void(__thiscall*)(void*, const Vector3 &aechse);
+	using SetAbsAechseFn = void(__thiscall *)(void *, const Vector3 &aechse);
 	static SetAbsAechseFn SetAbsAechse;
 
 	if (!SetAbsAechse)
@@ -443,26 +443,26 @@ void Entity::setAbsAechse(Vector3 aechse)
 
 Vector3 const &Entity::getRenderOrigin()
 {
-	void *rendable = (void*)((DWORD)(this) + 0x4);
-	typedef Vector3&(__thiscall *o_GetRenderOrigin)(void*);
+	void *rendable = (void *)((DWORD)(this) + 0x4);
+	typedef Vector3 &(__thiscall * o_GetRenderOrigin)(void *);
 	return VT::vfunc<o_GetRenderOrigin>(rendable, 1)(rendable);
 }
 
 QAngle const &Entity::getRenderAechse()
 {
-	void *rendable = (void*)((DWORD)(this) + 0x4);
-	typedef QAngle&(__thiscall *o_GetRenderAechse)(void*);
+	void *rendable = (void *)((DWORD)(this) + 0x4);
+	typedef QAngle &(__thiscall * o_GetRenderAechse)(void *);
 	return VT::vfunc<o_GetRenderAechse>(rendable, 2)(rendable);
 }
 
 float &Entity::getPoseParams(int idx)
 {
-	return *reinterpret_cast<float*>(reinterpret_cast<uintptr_t>(this) + offs.poseParams + sizeof(float) * idx);
+	return *reinterpret_cast<float *>(reinterpret_cast<uintptr_t>(this) + offs.poseParams + sizeof(float) * idx);
 }
 
 void *Entity::getObsTarget()
 {
-	return (void*)((DWORD)this + offs.obsTrgt);
+	return (void *)((DWORD)this + offs.obsTrgt);
 }
 
 int Entity::getChockedPackets()
@@ -482,73 +482,73 @@ int Entity::getChockedTicks()
 float &Entity::getSurfaceFriction()
 {
 	static int offs = netMngr->getOffs(XorStr("CBaseEntity"), XorStr("m_surfaceFriction"));
-	return *(float*)((DWORD)this + offs);
+	return *(float *)((DWORD)this + offs);
 }
 
 float &Entity::getStepSize()
 {
 	static int offs = netMngr->getOffs(XorStr("CBaseEntity"), XorStr("m_flStepSize"));
-	return *(float*)((DWORD)this + offs);
+	return *(float *)((DWORD)this + offs);
 }
 
 float &Entity::getMaxSpeed()
 {
 	static int offs = netMngr->getOffs(XorStr("CBasePlayer"), XorStr("m_flMaxSpeed"));
-	return *(float*)((DWORD)this + offs);
+	return *(float *)((DWORD)this + offs);
 }
 
 float &Entity::getFallVel()
 {
 	static int offs = netMngr->getOffs(XorStr("CBasePlayer"), XorStr("m_flFallVelocity"));
-	return *(float*)((DWORD)this + offs);
+	return *(float *)((DWORD)this + offs);
 }
 
 float &Entity::getAnimTime()
 {
-	return *(float*)((DWORD)this + offs.animTime);
+	return *(float *)((DWORD)this + offs.animTime);
 }
 
 float &Entity::getOldSimulTime()
 {
 	static int offs = netMngr->getOffs(XorStr("CBaseEntity"), XorStr("m_flSimulationTime")) + 0x4;
-	return *(float*)((DWORD)this + offs);
+	return *(float *)((DWORD)this + offs);
 }
 
 int &Entity::getDucked()
 {
-	return *(int*)((DWORD)this + offs.ducked);
+	return *(int *)((DWORD)this + offs.ducked);
 }
 
 int &Entity::getDucking()
 {
-	return *(int*)((DWORD)this + offs.ducking);
+	return *(int *)((DWORD)this + offs.ducking);
 }
 
 float &Entity::getDuckAmnt()
 {
-	return *(float*)((DWORD)this + offs.duckAmnt);
+	return *(float *)((DWORD)this + offs.duckAmnt);
 }
 
 float &Entity::getDuckSpeed()
 {
-	return *(float*)((DWORD)this + offs.duckSpeed);
+	return *(float *)((DWORD)this + offs.duckSpeed);
 }
 
 void Entity::standardBlendingRules(studiohdr_t *studiohdr, Vector3 *pos, Quaternion *q, float curtime, int kostMaska)
 {
-	typedef void(__thiscall *o_standardBlendingRules)(void*, studiohdr_t*, Vector3*, Quaternion*, float, int);
+	typedef void(__thiscall * o_standardBlendingRules)(void *, studiohdr_t *, Vector3 *, Quaternion *, float, int);
 	VT::vfunc<o_standardBlendingRules>(this, 200)(this, studiohdr, pos, q, curtime, kostMaska);
 }
 
 void Entity::buildTransformations(studiohdr_t *studiohdr, Vector3 *pos, Quaternion *q, const matrix3x4_t &cameraTransform, int kostMaska, byte *computed)
 {
-	typedef void(__thiscall *o_buildTransformations)(void*, studiohdr_t*, Vector3*, Quaternion*, const matrix3x4_t &, int, byte*);
+	typedef void(__thiscall * o_buildTransformations)(void *, studiohdr_t *, Vector3 *, Quaternion *, const matrix3x4_t &, int, byte *);
 	VT::vfunc<o_buildTransformations>(this, 184)(this, studiohdr, pos, q, cameraTransform, kostMaska, computed);
 }
 
 void Entity::updateClientSideAnimation()
 {
-	typedef void(__thiscall *o_updateClientSideAnimation)(void*);
+	typedef void(__thiscall * o_updateClientSideAnimation)(void *);
 	VT::vfunc<o_updateClientSideAnimation>(this, 218)(this);
 }
 
@@ -559,41 +559,41 @@ DWORD *Entity::getVarMap()
 
 float EntityWeapon::getAccurPen()
 {
-	return *(float*)((DWORD)this + offs.accPen);
+	return *(float *)((DWORD)this + offs.accPen);
 }
 
 float EntityWeapon::getNextPrimAtt()
 {
-	return *(float*)((DWORD)this + offs.nextPrimAtt);
+	return *(float *)((DWORD)this + offs.nextPrimAtt);
 }
 
 float EntityWeapon::getInac()
 {
-	typedef float(__thiscall *o_getInac)(void*);
+	typedef float(__thiscall * o_getInac)(void *);
 	return VT::vfunc<o_getInac>(this, 483)(this);
 }
 
 float EntityWeapon::getSir()
 {
-	typedef float(__thiscall *o_getSir)(void*);
+	typedef float(__thiscall * o_getSir)(void *);
 	return VT::vfunc<o_getSir>(this, 484)(this);
 }
 
 void EntityWeapon::upAccurPen()
 {
-	typedef void(__thiscall *o_upAccurPen)(void*);
+	typedef void(__thiscall * o_upAccurPen)(void *);
 	VT::vfunc<o_upAccurPen>(this, 485)(this);
 }
 
 bool EntityWeapon::isEmpty()
 {
-	int clip = *(int*)((DWORD)this + offs.clip);
+	int clip = *(int *)((DWORD)this + offs.clip);
 	return clip == 0;
 }
 
 bool EntityWeapon::isReload()
 {
-	return *(bool*)((DWORD)this + 0x3235);
+	return *(bool *)((DWORD)this + 0x3235);
 }
 
 WeapInfo_t *EntityWeapon::getWeapInfo()
@@ -601,46 +601,46 @@ WeapInfo_t *EntityWeapon::getWeapInfo()
 	if (!this || this == NULL)
 		return NULL;
 
-	typedef WeapInfo_t *(__thiscall *o_getWeapInfo)(void*);
+	typedef WeapInfo_t *(__thiscall * o_getWeapInfo)(void *);
 	return VT::vfunc<o_getWeapInfo>(this, 456)(this);
 }
 
 int *EntityWeapon::getItemDefIdx()
 {
-	return (int*)((DWORD)this + offs.itmDI);
+	return (int *)((DWORD)this + offs.itmDI);
 }
 
 int *EntityWeapon::getItemIdHigh()
 {
-	return (int*)((DWORD)this + offs.itemIdHigh);
+	return (int *)((DWORD)this + offs.itemIdHigh);
 }
 
 char *EntityWeapon::getCustName()
 {
-	return (char*)((DWORD)this + offs.custName);
+	return (char *)((DWORD)this + offs.custName);
 }
 
 int *EntityWeapon::getFallbackPK()
 {
-	return (int*)((DWORD)this + offs.fallbackPK);
+	return (int *)((DWORD)this + offs.fallbackPK);
 }
 
 int *EntityWeapon::getFallbackS()
 {
-	return (int*)((DWORD)this + offs.fallbackS);
+	return (int *)((DWORD)this + offs.fallbackS);
 }
 
 float *EntityWeapon::getFallbackW()
 {
-	return (float*)((DWORD)this + offs.fallbackW);
+	return (float *)((DWORD)this + offs.fallbackW);
 }
 
 int *EntityWeapon::getFallbackST()
 {
-	return (int*)((DWORD)this + offs.fallbackST);
+	return (int *)((DWORD)this + offs.fallbackST);
 }
 
 int *EntityWeapon::getAccId()
 {
-	return (int*)((DWORD)this + offs.accId);
+	return (int *)((DWORD)this + offs.accId);
 }

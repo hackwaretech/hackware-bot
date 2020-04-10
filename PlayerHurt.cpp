@@ -51,7 +51,7 @@ void PlayerHurtEvent::paint(void)
 
 		float ratio = 1.f - (diff / 0.8f);
 		alpha = (diff / 0.8f) * 2.f;
-		crtaj->drawString(ui_font, false, width / 2 + 6 + ratio * dist / 2, height / 2 + 6 + ratio * dist, Color(255, 255, 0, (int)(alpha*255)), std::to_string(hitMarkers[i].dmg).c_str());
+		crtaj->drawString(ui_font, false, width / 2 + 6 + ratio * dist / 2, height / 2 + 6 + ratio * dist, Color(255, 255, 0, (int)(alpha * 255)), std::to_string(hitMarkers[i].dmg).c_str());
 	}
 
 	if (hitMarkers.size() > 0)

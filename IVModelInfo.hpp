@@ -55,12 +55,22 @@ enum Bone
 class RadianEuler
 {
 public:
-	inline RadianEuler(void) { }
-	inline RadianEuler(float X, float Y, float Z) { x = X; y = Y; z = Z; }
+	inline RadianEuler(void) {}
+	inline RadianEuler(float X, float Y, float Z)
+	{
+		x = X;
+		y = Y;
+		z = Z;
+	}
 	inline RadianEuler(Quaternion const &q);
 	inline RadianEuler(QAngle const &angles);
 
-	inline void Init(float ix = 0.0f, float iy = 0.0f, float iz = 0.0f) { x = ix; y = iy; z = iz; }
+	inline void Init(float ix = 0.0f, float iy = 0.0f, float iz = 0.0f)
+	{
+		x = ix;
+		y = iy;
+		z = iz;
+	}
 
 	QAngle ToQAngle(void) const;
 	bool IsValid() const;
@@ -70,7 +80,7 @@ public:
 	inline const float *Base() const { return &x; }
 
 	float operator[](int i) const;
-	float& operator[](int i);
+	float &operator[](int i);
 
 	float x, y, z;
 };
@@ -79,12 +89,17 @@ class Quaternion
 {
 
 public:
-
 	inline Quaternion(void) {}
-	inline Quaternion(float ix, float iy, float iz, float iw) : x(ix), y(iy), z(iz), w(iw) { }
+	inline Quaternion(float ix, float iy, float iz, float iw) : x(ix), y(iy), z(iz), w(iw) {}
 	inline Quaternion(RadianEuler const &angle);
 
-	inline void Init(float ix = 0.0f, float iy = 0.0f, float iz = 0.0f, float iw = 0.0f) { x = ix; y = iy; z = iz; w = iw; }
+	inline void Init(float ix = 0.0f, float iy = 0.0f, float iz = 0.0f, float iw = 0.0f)
+	{
+		x = ix;
+		y = iy;
+		z = iz;
+		w = iw;
+	}
 
 	bool IsValid() const;
 	void Invalidate();
@@ -92,11 +107,11 @@ public:
 	bool operator==(const Quaternion &src) const;
 	bool operator!=(const Quaternion &src) const;
 
-	float* Base() { return (float*)this; }
-	const float* Base() const { return (float*)this; }
+	float *Base() { return (float *)this; }
+	const float *Base() const { return (float *)this; }
 
 	float operator[](int i) const;
-	float& operator[](int i);
+	float &operator[](int i);
 
 	float x, y, z, w;
 };
@@ -117,7 +132,7 @@ struct mstudiobbox_t
 		if (hitboxnameindex == 0)
 			return "";
 
-		return ((char*)this) + hitboxnameindex;
+		return ((char *)this) + hitboxnameindex;
 	}
 };
 
@@ -127,7 +142,7 @@ struct mstudiohitboxset_t
 
 	inline char *const pszName(void) const
 	{
-		return ((char*)this) + sznameindex;
+		return ((char *)this) + sznameindex;
 	}
 
 	int numhitboxes;
@@ -135,7 +150,7 @@ struct mstudiohitboxset_t
 
 	inline mstudiobbox_t *pHitbox(int i) const
 	{
-		return (mstudiobbox_t*)(((byte*)this) + hitboxindex) + i;
+		return (mstudiobbox_t *)(((byte *)this) + hitboxindex) + i;
 	}
 };
 
@@ -159,7 +174,13 @@ struct mstudiobone_t
 	int proctype;
 	int procindex;
 	mutable int physicsbone;
-	inline void *pProcedure() const { if (procindex == 0) return NULL; else return  (void *)(((byte *)this) + procindex); };
+	inline void *pProcedure() const
+	{
+		if (procindex == 0)
+			return NULL;
+		else
+			return (void *)(((byte *)this) + procindex);
+	};
 	int surfacepropidx;
 	inline char *const pszSurfaceProp(void) const { return ((char *)this) + surfacepropidx; }
 	inline int GetSurfaceProp(void) const { return surfacepropLookup; }
@@ -206,13 +227,21 @@ struct studiohdr_t
 
 	int numbones;
 	int boneindex;
-	inline mstudiobone_t *pBone(int i) const { Assert(i >= 0 && i < numbones); return (mstudiobone_t *)(((byte *)this) + boneindex) + i; };
+	inline mstudiobone_t *pBone(int i) const
+	{
+		Assert(i >= 0 && i < numbones);
+		return (mstudiobone_t *)(((byte *)this) + boneindex) + i;
+	};
 	int RemapSeqBone(int iSequence, int iLocalBone) const;
 	int RemapAnimBone(int iAnim, int iLocalBone) const;
 
 	int numbonecontrollers;
 	int bonecontrollerindex;
-	inline mstudiobonecontroller_t *pBonecontroller(int i) const { Assert(i >= 0 && i < numbonecontrollers); return (mstudiobonecontroller_t *)(((byte *)this) + bonecontrollerindex) + i; };
+	inline mstudiobonecontroller_t *pBonecontroller(int i) const
+	{
+		Assert(i >= 0 && i < numbonecontrollers);
+		return (mstudiobonecontroller_t *)(((byte *)this) + bonecontrollerindex) + i;
+	};
 
 	int numhitboxsets;
 	int hitboxsetindex;
@@ -298,15 +327,14 @@ enum RenderableTranslucencyType_t
 {
 	RENDERABLE_IS_OPAQUE = 0,
 	RENDERABLE_IS_TRANSLUCENT,
-	RENDERABLE_IS_TWO_PASS,	// has both translucent and opaque sub-partsa
+	RENDERABLE_IS_TWO_PASS, // has both translucent and opaque sub-partsa
 };
 
 class IVModelInfo
 {
 
 public:
-
-	virtual ~IVModelInfo(void) { }
+	virtual ~IVModelInfo(void) {}
 	virtual const model_t *GetModel(int modelindex) const = 0;
 	// Returns index of model by name
 	virtual int GetModelIndex(const char *name) const = 0;
@@ -315,17 +343,17 @@ public:
 	virtual vcollide_t *GetVCollide(const model_t *model) const = 0;
 	virtual vcollide_t *GetVCollide(int modelindex) const = 0;
 	virtual void GetModelBounds(const model_t *model, Vector3 &mins, Vector3 &maxs) const = 0;
-	virtual	void GetModelRenderBounds(const model_t *model, Vector3 &mins, Vector3 &maxs) const = 0;
+	virtual void GetModelRenderBounds(const model_t *model, Vector3 &mins, Vector3 &maxs) const = 0;
 	virtual int GetModelFrameCount(const model_t *model) const = 0;
 	virtual int GetModelType(const model_t *model) const = 0;
 	virtual void *GetModelExtraData(const model_t *model) = 0;
 	virtual bool ModelHasMaterialProxy(const model_t *model) const = 0;
-	virtual bool IsTranslucent(model_t const* model) const = 0;
+	virtual bool IsTranslucent(model_t const *model) const = 0;
 	virtual bool IsTranslucentTwoPass(const model_t *model) const = 0;
-	virtual void Unused0() {};
+	virtual void Unused0(){};
 	virtual RenderableTranslucencyType_t ComputeTranslucencyType(const model_t *model, int nSkin, int nBody) = 0;
-	virtual int GetModelMaterialCount(const model_t* model) const = 0;
-	virtual void GetModelMaterials(const model_t *model, int count, IMaterial** ppMaterials) = 0;
+	virtual int GetModelMaterialCount(const model_t *model) const = 0;
+	virtual void GetModelMaterials(const model_t *model, int count, IMaterial **ppMaterials) = 0;
 	virtual bool IsModelVertexLit(const model_t *model) const = 0;
 	virtual const char *GetModelKeyValueText(const model_t *model) = 0;
 	virtual bool GetModelKeyValue(const model_t *model, CUtlBuffer &buf) = 0; // supports keyvalue blocks in submodels
@@ -333,9 +361,9 @@ public:
 
 	virtual const studiohdr_t *FindModel(const studiohdr_t *pStudioHdr, void **cache, const char *modelname) const = 0;
 	virtual const studiohdr_t *FindModel(void *cache) const = 0;
-	virtual	virtualmodel_t *GetVirtualModel(const studiohdr_t *pStudioHdr) const = 0;
+	virtual virtualmodel_t *GetVirtualModel(const studiohdr_t *pStudioHdr) const = 0;
 	virtual byte *GetAnimBlock(const studiohdr_t *pStudioHdr, int iBlock) const = 0;
-	virtual bool HasAnimBlockBeenPreloaded(studiohdr_t const*, int) const = 0;
+	virtual bool HasAnimBlockBeenPreloaded(studiohdr_t const *, int) const = 0;
 
 	// Available on client only!!!
 	virtual void GetModelMaterialColorAndLighting(const model_t *model, Vector3 const &origin, Vector3 const &angles, trace_t *pTrace, Vector3 &lighting, Vector3 &matColor) = 0;

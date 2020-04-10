@@ -11,7 +11,6 @@ struct HitMarker
 class PlayerHurtEvent : public GameEventListener2
 {
 public:
-
 	void FireGameEvent(GameEvent *gEvent);
 	int GetEventDebugID(void);
 
@@ -21,7 +20,6 @@ public:
 	void paint(void);
 
 private:
-
 	std::vector<HitMarker> hitMarkers;
 };
 

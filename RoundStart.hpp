@@ -5,7 +5,6 @@
 class RoundStartEvent : public GameEventListener2
 {
 public:
-
 	void FireGameEvent(GameEvent *gEvent);
 	int GetEventDebugID(void);
 

@@ -73,7 +73,8 @@ void init()
 	while (!GetModuleHandleA(XorStr("client.dll")) || !GetModuleHandleA(XorStr("engine.dll")) || !GetModuleHandleA(XorStr("vstdlib.dll")))
 		std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
-	while (!(prozor = FindWindowA(XorStr("Valve001"), NULL))) std::this_thread::sleep_for(std::chrono::milliseconds(200));
+	while (!(prozor = FindWindowA(XorStr("Valve001"), NULL)))
+		std::this_thread::sleep_for(std::chrono::milliseconds(200));
 
 	p_Client = Iface::IfaceMngr::getIface<BaseClientDll>(XorStr("client.dll"), XorStr("VClient"));
 	p_ClientEntList = Iface::IfaceMngr::getIface<ClientEntList>(XorStr("client.dll"), XorStr("VClientEntityList"));
@@ -98,9 +99,9 @@ void init()
 
 	auto d3d = csFuncs->getD3D();
 
-	p_GlobVars = **(GlobVars***)((*(DWORD**)(p_Client))[0] + 0x1B);
-	p_Input = *(Input**)((*(DWORD**)p_Client)[15] + 0x1);
-	p_ClientMode = **(ClientMode***)((*(DWORD**)p_Client)[10] + 0x5);
+	p_GlobVars = **(GlobVars ***)((*(DWORD **)(p_Client))[0] + 0x1B);
+	p_Input = *(Input **)((*(DWORD **)p_Client)[15] + 0x1);
+	p_ClientMode = **(ClientMode ***)((*(DWORD **)p_Client)[10] + 0x5);
 
 	p_HudChat = FindHudElement<CHudChat>("CHudChat"); // (c) Beakers
 
@@ -112,9 +113,9 @@ void init()
 
 	do
 	{
-		p_MoveHelper = **(MoveHelper***)(csFuncs->findPattern(XorStr("\x8B\x0D\x00\x00\x00\x00\x8B\x46\x08\x68"), XorStr("xx????xxxx"), csFuncs->dClientDll, csFuncs->dClientDll + csFuncs->dClientDllSize, 0) + 2);
+		p_MoveHelper = **(MoveHelper ***)(csFuncs->findPattern(XorStr("\x8B\x0D\x00\x00\x00\x00\x8B\x46\x08\x68"), XorStr("xx????xxxx"), csFuncs->dClientDll, csFuncs->dClientDll + csFuncs->dClientDllSize, 0) + 2);
 	} while (!p_MoveHelper && p_MoveHelper == NULL);
-	
+
 	if (prozor)
 		oldWindowProc = (WNDPROC)SetWindowLongPtr(prozor, GWLP_WNDPROC, (LONG_PTR)Handlers::WndProc_h);
 

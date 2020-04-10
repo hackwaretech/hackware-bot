@@ -3,7 +3,6 @@
 
 RebuildGameMovement::RebuildGameMovement(void)
 {
-
 }
 
 void RebuildGameMovement::SetAbsOrigin(Entity *player, const Vector3 &vec)
@@ -34,29 +33,25 @@ int RebuildGameMovement::TryPlayerMove(Entity *player, Vector3 *pFirstDest, trac
 
 void RebuildGameMovement::Accelerate(Entity *player, Vector3 &wishdir, float wishspeed, float accel)
 {
-	
 }
 
 void RebuildGameMovement::AirAccelerate(Entity *player, Vector3 &wishdir, float wishspeed, float accel)
 {
-
 }
 
 void RebuildGameMovement::AirMove(Entity *player)
 {
-	
 }
 
 void RebuildGameMovement::StepMove(Entity *player, Vector3 &vecDestination, trace_t &trace)
 {
-	
 }
 
-void RebuildGameMovement::TracePlayerBBox(const Vector3 &start, const Vector3 &end, unsigned int fMask, int collisionGroup, trace_t& pm, Entity *player)
+void RebuildGameMovement::TracePlayerBBox(const Vector3 &start, const Vector3 &end, unsigned int fMask, int collisionGroup, trace_t &pm, Entity *player)
 {
 	Ray_t ray;
 	TraceFilter filter;
-	filter.pSkip = reinterpret_cast<void*>(player);
+	filter.pSkip = reinterpret_cast<void *>(player);
 
 	ray.Init(start, end, player->getCollideable()->vecMins(), player->getCollideable()->vecMax());
 	p_EngineTrace->TraceRay(ray, fMask, &filter, &pm);
@@ -64,12 +59,10 @@ void RebuildGameMovement::TracePlayerBBox(const Vector3 &start, const Vector3 &e
 
 void RebuildGameMovement::WalkMove(Entity *player)
 {
-
 }
 
 void RebuildGameMovement::FinishGravity(Entity *player)
 {
-	
 }
 
 void RebuildGameMovement::FullWalkMove(Entity *player)
@@ -78,7 +71,7 @@ void RebuildGameMovement::FullWalkMove(Entity *player)
 
 	StartGravity(player);
 
-	// Fricion is handled before we add in any base velocity. That way, if we are on a conveyor, 
+	// Fricion is handled before we add in any base velocity. That way, if we are on a conveyor,
 	// we don't slow when standing still, relative to the conveyor.
 	if (player->getFlags() & FL_ONGROUND)
 	{
@@ -95,7 +88,7 @@ void RebuildGameMovement::FullWalkMove(Entity *player)
 	}
 	else
 	{
-		AirMove(player);  // Take into account movement when in air.
+		AirMove(player); // Take into account movement when in air.
 	}
 
 	// Make sure velocity is valid.
@@ -103,7 +96,6 @@ void RebuildGameMovement::FullWalkMove(Entity *player)
 
 	// Add any remaining gravitational component.
 	FinishGravity(player);
-
 
 	// If we are on ground, no downward velocity.
 	if (player->getFlags() & FL_ONGROUND)
@@ -116,22 +108,17 @@ void RebuildGameMovement::FullWalkMove(Entity *player)
 
 void RebuildGameMovement::Friction(Entity *player)
 {
-	
 }
-
 
 void RebuildGameMovement::CheckFalling(Entity *player)
 {
-	
 }
 
 const int nanmask = 255 << 23;
-#define	IS_NAN(x) (((*(int *)&x)&nanmask)==nanmask)
+#define IS_NAN(x) (((*(int *)&x) & nanmask) == nanmask)
 void RebuildGameMovement::CheckVelocity(Entity *player)
 {
-	
 }
 void RebuildGameMovement::StartGravity(Entity *player)
 {
-	
 }

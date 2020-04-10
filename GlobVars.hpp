@@ -3,7 +3,6 @@
 class GlobVars
 {
 public:
-
 	float realtime;
 	int framecount;
 	float absoluteframetime;
@@ -21,7 +20,6 @@ public:
 	bool m_bRemoteClient;
 
 private:
-
 	int nTimestampNetworkingBase;
 	int nTimestampRandomizeWindow;
 };

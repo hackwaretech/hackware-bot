@@ -17,8 +17,8 @@ struct dlight_t
 	Vector3 origin;
 	float radius;
 	ColorRGBExp32 color;
-	float die; // stop lighting after this time
-	float decay; // drop this each second
+	float die;		// stop lighting after this time
+	float decay;	// drop this each second
 	float minLight; // don't add when contributing less
 	int key;
 	int style; // lightstyle
@@ -28,8 +28,8 @@ struct dlight_t
 	float m_innerAngle;
 	float m_outerAngle;
 
-	// If this ptr is set, the dlight will only affect this particular client renderable 
-	const IClientRenderable* m_pExclusiveLightReceiver;
+	// If this ptr is set, the dlight will only affect this particular client renderable
+	const IClientRenderable *m_pExclusiveLightReceiver;
 
 	dlight_t() : m_pExclusiveLightReceiver(NULL) {}
 
@@ -52,16 +52,15 @@ struct dlight_t
 class IVEffects
 {
 public:
-
 	dlight_t *CL_AllocDlight(int key)
 	{
-		typedef dlight_t*(__thiscall *o_CL_AllocDlight)(PVOID, int);
+		typedef dlight_t *(__thiscall * o_CL_AllocDlight)(PVOID, int);
 		return VT::vfunc<o_CL_AllocDlight>(this, 4)(this, key);
 	}
 
 	dlight_t *CL_AllocElight(int key)
 	{
-		typedef dlight_t*(__thiscall *o_CL_AllocElight)(PVOID, int);
+		typedef dlight_t *(__thiscall * o_CL_AllocElight)(PVOID, int);
 		return VT::vfunc<o_CL_AllocElight>(this, 5)(this, key);
 	}
 };

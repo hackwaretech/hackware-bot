@@ -29,7 +29,6 @@ class Entity
 {
 
 public:
-
 	int getTeam();
 	bool isPlayer();
 	DWORD getGlowIndex();
@@ -127,10 +126,10 @@ public:
 	float m_fRange;
 	float m_fRangeModifier;
 	__int32 bullets;
-	float cycle_time; 
+	float cycle_time;
 	float cycle_time_alt;
 	char unk3[416];
-	float spread; 
+	float spread;
 	float spread_alt;
 };
 
@@ -138,7 +137,6 @@ class EntityWeapon
 {
 
 public:
-
 	float getAccurPen();
 	float getNextPrimAtt();
 	float getInac();
@@ -157,12 +155,10 @@ public:
 	int *getAccId();
 };
 
-
 class Collideable
 {
 
 public:
-
 	virtual void unk0();
 	virtual Vector3 &vecMins() const;
 	virtual Vector3 &vecMax() const;

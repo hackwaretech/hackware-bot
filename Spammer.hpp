@@ -3,7 +3,6 @@
 class Spammer
 {
 public:
-
 	void spam();
 };
 
